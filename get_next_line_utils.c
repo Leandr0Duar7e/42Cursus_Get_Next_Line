@@ -12,6 +12,37 @@
 
 #include <stdlib.h>
 
+char	*ft_strdup(const char *s1)
+{
+	char	*ptr;
+	int		i;
+
+	i = 0;
+	while (s1[i] != '\0')
+		i++;
+	ptr = (char *)malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*nstr;
@@ -80,4 +111,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		str[i++] = s[start++];
 	str[i] = '\0';
 	return (str);
-
+}
