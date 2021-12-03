@@ -6,7 +6,7 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:59:09 by leolivei          #+#    #+#             */
-/*   Updated: 2021/11/30 14:16:09 by leolivei         ###   ########.fr       */
+/*   Updated: 2021/12/03 13:12:00 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	{
 		fd1 = open(argv[1], O_RDONLY);
 		i = 1;
-		while (i <= 6)
+		while (i <= 10)
 		{
 			printf("linha %d\n", i);
 			printf("%s\n", get_next_line(fd1));

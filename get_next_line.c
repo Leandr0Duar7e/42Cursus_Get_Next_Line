@@ -6,48 +6,44 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:33:21 by leolivei          #+#    #+#             */
-/*   Updated: 2021/11/30 14:16:06 by leolivei         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:23:10 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-static char	*makekeep(char **fdlst, char *rline, int fd, int nrr)
+static char	*makekeep(char **fdlst, char *rline, int nrr)
 {
 	char	*line;//variavel a retornar	
+	char	*temp;
 	int		i;
 
 	if (nrr)
 	{
-		if (!fdlst[fd])
-			fdlst[fd] = "";
-		//fdlst[fd] = malloc(nrr + ft_strlen(fdlst[fd]));
-		if (!fdlst[fd])
-			return 0;
-		fdlst[fd] = ft_strjoin(fdlst[fd], rline);
+		if (!*fdlst)
+			*fdlst = ft_strdup("");
+		temp = ft_strjoin(*fdlst, rline);
+		//free(fdlst);
+		*fdlst = temp;
 	}
-	i = 0;
-	while (fdlst[fd][i])
+	i = (int)((ft_strchr(*fdlst, '\n')) - *fdlst);//indice do '\n'
+	if (ft_strchr(*fdlst, '\n'))
 	{
-		if (fdlst[fd][i] == '\n')
-		{
-			line = malloc(i + 1);
-			if (!line)
-				return 0;
-			line = ft_substr(fdlst[fd], 0, i + 1);
-			fdlst[fd] = (ft_strchr(fdlst[fd], '\n') + 1);
-			return (line);
-		}
-		i++;
+		line = malloc(i + 1);
+		if (!line)
+			return 0;
+		line = ft_substr(*fdlst, 0, i + 1);
+		*fdlst = (ft_strchr(*fdlst, '\n') + 1);
+		return (line);
 	}
-	if (!nrr && !fdlst[i])
+	else if (!nrr)
 	{
 		line = malloc(i - 1);
 		if (!line)
 			return (0);
-		line = ft_substr(fdlst[fd], 0, i - 1);
-		fdlst[fd] = 0;
+		line = ft_substr(*fdlst, 0, i - 1);
+		*fdlst = 0;
 		return (line);
 	}
 	return (0);
@@ -59,14 +55,17 @@ char	*get_next_line(int fd)
 	char			*res;
 	char			*rbuf;//buffer to receive characters read
 	ssize_t			nrlet;//number of chars read
-
-	rbuf = malloc(sizeof(char) * BUFFER_SIZE);
+	
+	if (fd < 0 || BUFFER_SIZE < 1 || fd > FD_MAX)
+		return (NULL);
+	rbuf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!rbuf)
 		return (0);
-	nrlet = read(fd, rbuf, (size_t )BUFFER_SIZE);
+	nrlet = read(fd, rbuf, (size_t )(BUFFER_SIZE));
 	if (nrlet || keep[fd])
 	{
-		res = makekeep(keep, rbuf, fd, nrlet);
+		rbuf[nrlet] = '\0';
+		res = makekeep(&keep[fd], rbuf, nrlet);
 		free(rbuf);
 		if (!res)
 		{	
