@@ -6,7 +6,7 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:34:21 by leolivei          #+#    #+#             */
-/*   Updated: 2021/11/23 15:07:39 by leolivei         ###   ########.fr       */
+/*   Updated: 2021/12/07 18:54:09 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,4 @@ char	*ft_strdup(const char *s1);
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 42
-#endif
-
-#ifndef FD_MAX
-#define FD_MAX 4864
 #endif
