@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 18:33:21 by leolivei          #+#    #+#             */
-/*   Updated: 2021/12/09 12:15:15 by leolivei         ###   ########.fr       */
+/*   Created: 2021/12/09 12:15:03 by leolivei          #+#    #+#             */
+/*   Updated: 2021/12/09 12:33:37 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 #include <limits.h>
 
